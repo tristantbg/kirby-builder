@@ -28,6 +28,9 @@ class BuilderField extends StructureField {
       $fieldsetName = $data->_fieldset;
     else
       return "No fieldset found in entry.";
+    
+    if($fieldsetName == 'image')
+      $data->_thumb = thumb($this->page()->image($data->content), array('width'=> 100))->url();
 
     if(isset($this->fieldsets[$fieldsetName])) {
       $fieldset = $this->fieldset($fieldsetName);
